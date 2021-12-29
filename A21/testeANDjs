@@ -1,0 +1,17 @@
+// teste de curto-circuito
+
+// maneira de executar uma condicional sem utilizar if:
+
+function printABC() {
+    return "ABC"
+}
+
+let trueValue = true
+
+console.log(trueValue && printABC()) // como ambos os valores não são FALSY, o interpretador retorna sempre o último [ printABC() ]
+
+let falseValue = false
+
+console.log(falseValue && printABC()) // retorna sempre o primeiro 'false', ignorando a chamada de printABC
+
+

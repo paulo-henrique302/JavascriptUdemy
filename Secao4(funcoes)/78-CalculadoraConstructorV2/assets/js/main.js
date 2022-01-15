@@ -40,7 +40,6 @@ function Calculadora() {
         } catch {
             alert("Operação inválida!")
         }
-
     }
     
     this.capturaClicks = () => {

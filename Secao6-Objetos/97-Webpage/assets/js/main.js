@@ -21,9 +21,12 @@ const getClick = inputQuery => {
 function validador(inputCPF) {
     
     let validationResult = false
-    
-    
 
+    // remove all the non-numeric characters
+    let cleanCPF = inputCPF.replace(/\D+/g, '')
+    CPFArray = Array.from(cleanCPF)
+    
+    
     showResult(validationResult)
 
 }

@@ -1,65 +1,45 @@
-// all made with arrow functions to avoid 'this' referencing the wrong target,
-// since arrows preserve this to point only to the parent object.
-
-function Calculadora() {
-
-    this.display = document.querySelector('.display')
-    
-    this.inicia = () => {
-        this.cliqueBotoes()
+class ValidaForm {
+    constructor() {
+        this.form = document.querySelector('.form-area')
+        this.events()
+    }
+    events() {
+        this.form.addEventListener('submit', e => {
+            this.handleSubmit(e)
+        })
     }
 
-    this.btnParaDisplay = (num) => {
-        this.display.value += num
+    handleSubmit(e) {
+        e.preventDefault()
+        const valid = this.isValid(e)
     }
 
-    this.apagaUm = () => {
-        this.display.value = this.display.value.slice(0, -1)
-    }
-
-    this.clearDisplay = () => {this.display.value = ''}
-
-    this.realizaConta = () => {
+    isValid(e) {
+        let valid = true
         
-        let conta = this.display.value
-        
-        try {
-            conta = eval(conta)
+        for(let errorTxt of this.form.querySelectorAll('.error-text')) {
+            errorTxt.remove()
+        }
 
-            if(!conta) {
-                alert('Operação inválida!')
-                return
+        for(let input of this.form.querySelectorAll('.validar')) {
+
+            const label = input.previousElementSibling.innerText
+
+            // se VAZIO (false) -> !vazio = TRUE
+            if(!input.value) {
+                this.createError(input, `O campo "${label.slice(0, -1)}" não pode estar vazio.`)
+                valid = false
             }
-
-            this.display.value = conta
-
-        } catch {
-            alert("Operação inválida!")
-            return
         }
     }
 
-    this.cliqueBotoes = () => {
-
-        document.addEventListener('click', (e) => {
-            const elemento = e.target
-
-            if(elemento.classList.contains('btn-num')) {
-                this.btnParaDisplay(elemento.innerText)
-            }
-            if(elemento.classList.contains('btn-clear')) {
-                this.clearDisplay()
-            }
-            if(elemento.classList.contains('btn-del')) {
-                this.apagaUm()
-            }
-            if(elemento.classList.contains('btn-eq')) {
-                this.realizaConta()
-            }
-            
-        })
-    } 
+    createError(field, msg) {
+        const div = document.createElement('div')
+        div.innerHTML = msg
+        div.classList.add('error-text')
+        field.insertAdjacentElement('afterend', div)
+    }
+    
 }
 
-const calc = new Calculadora()
-calc.inicia()
+const valida = new ValidaForm()

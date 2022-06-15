@@ -5,15 +5,27 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modelo</title>
+    <title>Gerador de senhas</title>
 </head>
 
 <body>
     <section class="container">
-        <h1>Lorem ipsum label</h1>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. A ipsum provident labore praesentium neque nulla,
-            accusamus qui vero exercitationem ut expedita, quae corrupti, laboriosam ullam sequi deleniti at repudiandae
-            modi.</p>
+        
+        <h1 class="main-title">Gerador de senhas</h1>
+
+        <div class="senha-gerada">Selecione as opções</div>
+
+        Quantidade de caracteres <input value="10" type="number" min="1" max="25" class="qtd-caract"> <br>
+
+        Adicionar números <input type="checkbox" checked class="add-num"><br>
+
+        Letras maiúsculas <input class="check-maiusc" type="checkbox" checked ><br>
+
+        Letras minúsculas <input class="check-minusc" type="checkbox" checked><br>
+
+        Adicionar símbolos <input class="check-simb" type="checkbox" checked><br>
+
+        <button class="btn-gerar">Gerar senha</button>
 
     </section>
 

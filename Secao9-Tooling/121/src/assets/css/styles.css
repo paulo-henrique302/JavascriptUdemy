@@ -59,3 +59,25 @@ form button:hover {
     transform: scale(1.02); /* minha mod */
     transition: ease-in-out;
 }
+
+.btn-gerar {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.senha-gerada {
+    font-size: 2em;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+}
+
+
+input[type="checkbox"] {
+    width: 15px;
+    height: 15px;
+}
+
+.main-title {
+    font-size: 40px;
+}

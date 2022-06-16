@@ -5,14 +5,27 @@ const path = require('path')
 async function listFiles(rootDir) {
     rootDir = rootDir || path.resolve(__dirname)
     const files = await fs.readdir(rootDir)
-    walk(files) 
+    walk(files, rootDir) 
 }
 
-function walk(files) {
+async function walk(files, rootDir) {
     for(let file of files) {
-        console.log(file)
+        const fileFullPath = path.resolve(rootDir, file)
+        const stats = await fs.stat(fileFullPath)
+        
+        if(/\.git/g.test(fileFullPath)) continue
+        if(/\node_modules/g.test(fileFullPath)) continue
+ 
+        if(stats.isDirectory()) { 
+            listFiles(fileFullPath)
+            continue
+        }
+        
+        if(
+            !/\.css/g.test(fileFullPath) && !/\.html/g.test(fileFullPath)
+        ) continue
+        console.log(fileFullPath, stats.isDirectory())
     }
 }
 
 listFiles('E:/dev/CursoJS/JS/Curso-FullStack')
-
